@@ -1,0 +1,7 @@
+# DeepSeek 联网搜索插件依赖
+#
+# 说明：插件 Runner 与 MaiBot 主程序共享同一个 Python 环境，
+# aiohttp 已是 MaiBot 的依赖（见根目录 requirements.txt），正常情况下无需额外安装。
+# 如果在隔离环境中使用本插件，请执行：
+#   pip install aiohttp>=3.9
+aiohttp>=3.9

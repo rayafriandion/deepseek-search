@@ -1,0 +1,47 @@
+[plugin]
+enabled = true
+config_version = "1.0.0"
+
+[api]
+# DeepSeek API Key，必填。留空时工具会返回配置错误，增强模式注入也会自动跳过
+api_key = ""
+# Search 接口地址，默认为 DeepSeek 官方接口；如需代理或兼容服务可自行修改
+search_url = "https://api.deepseek.com/v1/tools/search"
+# Fetch 接口地址，默认为 DeepSeek 官方接口；如需代理或兼容服务可自行修改
+fetch_url = "https://api.deepseek.com/v1/tools/fetch"
+# 单次请求超时时间（秒）
+timeout_seconds = 30.0
+# 遇到 408/429/5xx 或网络错误时的最大重试次数
+max_retries = 2
+# 两次请求之间的最小间隔（秒）。DeepSeek 账号级 QPS 限制为 5，默认 0.25 秒约 4 QPS，留出余量
+min_request_interval_seconds = 0.25
+
+[search]
+# Planner/VLM 未指定 count 时的默认返回条数（1-50）
+default_count = 10
+# Planner/VLM 指定 count 时的上限截断（1-50）
+max_count = 20
+# 是否默认返回网页正文（会增加返回体积与费用）
+need_content = false
+# 本地化 IP，留空则不指定
+localization = ""
+# 返回给模型的单条摘要最大字符数
+max_summary_chars = 1200
+# 返回给模型的网页正文最大字符数（need_content 为 true 时生效）
+max_content_chars = 4000
+
+[fetch]
+# 返回给模型的抓取正文最大字符数
+max_content_chars = 12000
+
+[mode]
+# 运行模式：normal=普通（工具可用但不施压）；enhanced=增强（每次 Planner/VLM 请求都会注入督促指令并强化工具描述）
+mode = "normal"
+# 增强模式下注入到 Planner/VLM 上下文的指令文本
+enhanced_instruction = """【联网搜索增强模式已开启】你必须积极使用 deepseek_web_search 与 deepseek_web_fetch 工具核实事实：
+1. 涉及实时信息、新闻、价格、版本发布、人物近况、数据统计，或任何你不确定、可能过时的细节时，先搜索再回答，严禁仅凭记忆作答；
+2. 搜索摘要不足以确认时，用 deepseek_web_fetch 抓取结果链接的原文再下结论；
+3. 只有在纯闲聊、情感陪伴等无需事实的场景下才可以跳过搜索；
+4. 搜索失败时如实告知用户，不要编造搜索结果或链接。"""
+# 增强模式下附加到两个工具描述末尾的催促文本
+enhanced_tool_suffix = "【增强模式】涉及事实、实时信息或任何你不确定的内容时，请优先调用本工具联网核实，不要仅凭记忆回答。"
