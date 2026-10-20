@@ -79,4 +79,4 @@ plugins/deepseek-search/
 - Runner 与主进程隔离，插件异常不影响主程序；
 - 接口封装见 `deepseek_client.py`，主逻辑见 `plugin.py`；
 - 本地测试：`python _local_test.py`（91 项断言，覆盖组件收集、配置模型、格式化、错误重试、Hook 注入与防重、命令、工具参数校验、生命周期，无需真实 API Key）；
-- `_manifest.json` 中 `author.url` 为占位值（`https://github.com/Sanchess`），发布前请改为你自己的主页地址。
+- 仓库地址：<https://github.com/rayafriandion/deepseek-search>。

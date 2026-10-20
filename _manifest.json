@@ -6,7 +6,7 @@
   "description": "通过 DeepSeek Search/Fetch 接口为 Planner 与 VLM 提供联网搜索和网页抓取工具，支持普通/增强双模式，增强模式下会主动督促 Planner/VLM 调用搜索核实事实",
   "author": {
     "name": "Sanchess",
-    "url": "https://github.com/Sanchess"
+    "url": "https://github.com/rayafriandion"
   },
   "license": "MIT",
   "urls": {
